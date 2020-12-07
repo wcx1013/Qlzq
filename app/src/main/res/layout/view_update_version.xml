@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <ImageView
+        android:id="@+id/btn_update_cancel"
+        android:layout_width="16dp"
+        android:layout_height="15.5dp"
+        android:src="@mipmap/dialog_close"
+        android:scaleType="fitXY"
+        android:layout_gravity="end"/>
+    
+    <FrameLayout
+        android:layout_width="245.5dp"
+        android:layout_height="363dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="345dp"
+            android:src="@mipmap/up_version01"
+            android:scaleType="fitXY"/>
+        
+        <ImageView
+            android:id="@+id/btn_update_sure"
+            android:layout_width="109.5dp"
+            android:layout_height="36dp"
+            android:src="@mipmap/up_version02"
+            android:scaleType="fitXY"
+            android:layout_gravity="bottom|center_horizontal"/>
+        
+    </FrameLayout>
+
+</LinearLayout>

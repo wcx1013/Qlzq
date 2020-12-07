@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+        <RelativeLayout
+            android:id="@+id/title_left_layout"
+            android:layout_width="46dp"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/title_left_imageview"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_arrow_left_black"
+                android:scaleType="fitXY"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/title_left_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="15dp"
+            android:text="取消"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/title_middle_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:maxWidth="224dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="20dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_middle_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="75dp"
+            android:maxWidth="224dp"
+            android:singleLine="true"
+            android:text="设置"
+            android:textStyle="bold"
+            android:textColor="@color/text_1C"
+            android:textSize="18dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/title_right_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7.5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/title_right_imageview"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="15dp"
+            android:scaleType="centerInside"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/click_color"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</RelativeLayout>

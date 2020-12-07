@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <include layout="@layout/view_title_bar"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_tcdl"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/ic_login_out"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出登录"
+            android:textColor="@color/text_36"
+            android:layout_marginStart="11dp"
+            android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@mipmap/ic_arrow_right_black"
+            android:scaleType="fitXY"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+        
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_zx"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/ic_login_destory"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注销"
+                android:textColor="@color/text_36"
+                android:layout_marginStart="11dp"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@mipmap/ic_arrow_right_black"
+            android:scaleType="fitXY"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

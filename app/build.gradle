@@ -1,0 +1,162 @@
+plugins {
+    id 'com.android.application'
+    id 'com.mob.sdk'
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.juguo.gushici"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        flavorDimensions "versionCode"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        oppo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "oppo"]
+        }
+        vivo {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "vivo"]
+        }
+        huawei {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "huawei"]
+        }
+        meizu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "meizu"]
+        }
+        sanxing {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "sanxing"]
+        }
+//        yingyongbao {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "yingyongbao"]
+//        }
+        none {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "none"]
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            // 输出apk名称为WeiLaiCheng1.0_2018-08-13.apk
+            def fileName = "${defaultConfig.applicationId}_${variant.productFlavors[0].name}_${defaultConfig.versionName}.apk"
+            outputFileName = fileName
+        }
+    }
+}
+
+MobSDK {
+    appKey "31760989d6416"
+    appSecret "ddb207f94fd14fe64751dcc23ffa6bc9"
+    ShareSDK {
+        loopShare false
+        devInfo {
+            QQ {
+                appId "1111133121"
+                appKey "mcWGR5yqGsMxJZjg"
+            }
+            Wechat {
+                appId "wx2f677d639dd870b3"
+                appSecret "494387edc0d1534eb1eb91af6e7a4905"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            WechatMoments {
+                appId "wx2f677d639dd870b3"
+                appSecret "494387edc0d1534eb1eb91af6e7a4905"
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+
+    //okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.squareup.okio:okio:1.11.0'
+
+    //retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.2.58'
+
+    //autodispose用来解决rxjava2内存泄漏
+    implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.0.0-RC2'
+
+    //eventbus用来传递信息
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation files('libs\\umeng-common-9.1.3.jar')
+
+    //dagger2
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.21'
+    implementation 'com.google.dagger:dagger-android:2.21'
+    implementation 'com.google.dagger:dagger-android-support:2.21'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.21'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+
+    //今日头条屏幕适配方案
+    implementation 'me.jessyan:autosize:1.1.2'
+
+    //leakcanary内存泄漏检测
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
+
+    //butterknife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //PermissionsDispatcher
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.1.0"
+
+    // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.gyf.immersionbar:immersionbar:2.3.3'
+
+    // 图片加载
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    // 下拉刷新\
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    // apk版本更新
+    implementation 'com.teprinciple:updateapputils:2.3.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // 友盟
+    implementation files('libs/umeng-asms-armeabi-v1.1.3.aar')
+    implementation files('libs/umeng-crash-armeabi-v0.0.4.aar')
+
+    //fragment管理
+    implementation 'me.yokeyword:fragmentation:1.3.8'
+
+    // 穿山甲广告接入
+    implementation(name: 'open_ad_sdk', ext: 'aar')
+}
