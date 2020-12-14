@@ -141,6 +141,15 @@ public class Util {
                 .into(view);
     }
 
+    public static void displayCircleCropImgView(Context context, ImageView view, Object imgUrl, int img_dt) {
+        Glide.with(context)
+                .load(imgUrl)
+                .apply(RequestOptions.circleCropTransform())
+                .centerCrop()
+                .placeholder(img_dt)
+                .into(view);
+    }
+
     /**
      * 获取本地分享图标
      *
@@ -153,7 +162,9 @@ public class Util {
         if (!new File(Constants.JUGUO_CACHE_DIR + Constants.CACHE_FILE + imgName).exists()) {
             InputStream is = context.getResources().openRawResource(imgId);
             Bitmap bmpBitmap = BitmapFactory.decodeStream(is);
-            storeInSD(bmpBitmap, GetCacheFilePath(), imgName);
+            if(bmpBitmap!=null){
+                storeInSD(bmpBitmap, GetCacheFilePath(), imgName);
+            }
         }
         return Constants.JUGUO_CACHE_DIR + Constants.CACHE_FILE + imgName;
     }

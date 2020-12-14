@@ -23,6 +23,8 @@ import android.view.View;
 import android.widget.EditText;
 
 
+import com.juguo.gushici.bean.MarketPkgsBean;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,49 @@ public class CommUtils {
         }
         return "";
     }
+
+    /**
+     * 获取当前手机上的应用商店
+     *
+     * @param context
+     * @return
+     */
+    public static ArrayList<MarketPkgsBean> getInstalledMarketPkgs(Context context) {
+        ArrayList<MarketPkgsBean> pkgs = new ArrayList<>();
+        if (context == null)
+            return pkgs;
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setData(Uri.parse("market://details?id="));
+        PackageManager pm = context.getPackageManager();
+        // 通过queryIntentActivities获取ResolveInfo对象
+        List<ResolveInfo> infos = pm.queryIntentActivities(intent,
+                0);
+        if (infos == null || infos.size() == 0)
+            return pkgs;
+        int size = infos.size();
+        for (int i = 0; i < size; i++) {
+            String appName = "";
+            String pkgName = "";
+            Drawable icon = null;
+            try {
+                ActivityInfo activityInfo = infos.get(i).activityInfo;
+
+                icon = pm.getApplicationIcon(activityInfo.applicationInfo);
+                appName = pm.getApplicationLabel(activityInfo.applicationInfo).toString();
+                pkgName = activityInfo.packageName;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // com.android.vending 谷歌应用商店
+            if (!TextUtils.isEmpty(pkgName) && !"com.android.vending".equals(pkgName))
+                pkgs.add(new MarketPkgsBean(appName, pkgName, icon));
+        }
+        return pkgs;
+    }
+
 
     /**
      * 获取该软件版本

@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.annotations.Nullable;
 
-public abstract class BaseMvpFragment<P extends BaseMvpPresenter> extends BaseFragment implements BaseMvpCallback {
+public abstract class BaseMvpFragment<P extends BaseMvpPresenter> extends BaseFragment implements BaseMvpCallback{
 
     @Inject
     @Nullable
@@ -62,6 +62,8 @@ public abstract class BaseMvpFragment<P extends BaseMvpPresenter> extends BaseFr
                 .fragmentModule(new FragmentModule(this))
                 .build();
     }
+
+
 
     @Override
     public void onDestroyView() {

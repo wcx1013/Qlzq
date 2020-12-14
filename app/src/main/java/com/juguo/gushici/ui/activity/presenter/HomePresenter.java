@@ -2,6 +2,7 @@ package com.juguo.gushici.ui.activity.presenter;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 
 import com.juguo.gushici.base.BaseMvpPresenter;
 import com.juguo.gushici.dragger.bean.User;
@@ -25,4 +26,42 @@ public class HomePresenter extends BaseMvpPresenter<HomeContract.View> implement
 
     }
 
+    @Override
+    public void login(User user) {
+        RetrofitUtils.getInstance().create(ApiService.class)
+                .login(user)
+                .compose(RxSchedulers.io_main())
+                .retry(2)
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(new DefaultObserver<LoginResponse>((Context) mView) {
+                    @Override
+                    public void onSuccess(LoginResponse result) {
+                        mView.httpCallback(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.httpError(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void getAccountInformation() {
+        RetrofitUtils.getInstance().create(ApiService.class)
+                .accountInformation()
+                .compose(RxSchedulers.io_main())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(new DefaultObserver<AccountInformationResponse>((Fragment) mView) {
+                    @Override
+                    public void onSuccess(AccountInformationResponse result) {
+                        mView.httpCallback(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.httpError(e.toString());
+                    }
+                });
+    }
 }

@@ -3,75 +3,121 @@
     android:id="@+id/ll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@mipmap/bg_mine"
     android:orientation="vertical">
+
+    <include layout="@layout/view_title_bar" />
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.juguo.gushici.view.XCRoundImageView
+            android:id="@+id/img_user"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_user_place" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="未登录，登录更精彩"
+            android:textColor="@color/text_10"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="34dp"
+        android:fillViewport="true"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
             android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/img_setting"
-                android:layout_width="22dp"
-                android:layout_height="21dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="15dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_setting" />
-
-            <LinearLayout
-                android:id="@+id/ll_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:orientation="horizontal">
-
-                <com.juguo.gushici.view.XCRoundImageView
-                    android:id="@+id/img_user"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_user_place" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="未登录，登录更精彩"
-                        android:textColor="@color/text_10"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_vip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginTop="3dp"
-                        android:textColor="@color/text_10" />
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_bbgx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="33dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_update"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="更新"
+                        android:textColor="@color/color_1A1A1A"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:id="@+id/img_gx_r"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_arrow_right_black" />
+
+                    <TextView
+                        android:id="@+id/tv_vesion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:layout_toStartOf="@id/img_gx_r"
+                        android:text="V1.0.0"
+                        android:textColor="@color/color_1A1A1A"
+                        android:textSize="10dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_gywm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="33dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_about_us"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:text="关于我们"
+                        android:textColor="@color/color_1A1A1A"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_arrow_right_black" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/rl_yszc"
@@ -84,9 +130,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_yinsi"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="隐私政策"
-                        android:textColor="@color/text_36"
+                        android:textColor="@color/color_1A1A1A"
                         android:textSize="14dp" />
 
                     <ImageView
@@ -109,34 +157,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_haoping"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="赏个好评"
-                        android:textColor="@color/text_36"
-                        android:textSize="14dp" />
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/ic_arrow_right_black" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_gywm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="33dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="关于我们"
-                        android:textColor="@color/text_36"
+                        android:textColor="@color/color_1A1A1A"
                         android:textSize="14dp" />
 
                     <ImageView
@@ -160,9 +185,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_feedback"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
-                        android:text="帮助与反馈"
-                        android:textColor="@color/text_36"
+                        android:text="意见反馈"
+                        android:textColor="@color/color_1A1A1A"
                         android:textSize="14dp" />
 
                     <ImageView
@@ -173,6 +200,7 @@
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_arrow_right_black" />
                 </RelativeLayout>
+
 
                 <RelativeLayout
                     android:id="@+id/rl_fxhy"
@@ -185,9 +213,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_share1"
+                        android:drawablePadding="3dp"
                         android:gravity="center_vertical"
                         android:text="分享好友"
-                        android:textColor="@color/text_36"
+                        android:textColor="@color/color_1A1A1A"
                         android:textSize="14dp" />
 
                     <ImageView
@@ -199,25 +229,25 @@
                         android:src="@mipmap/ic_arrow_right_black" />
                 </RelativeLayout>
 
+
                 <RelativeLayout
-                    android:id="@+id/rl_bbgx"
+                    android:id="@+id/rl_tcdl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="33dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="33dp"
-                    android:layout_marginBottom="39dp">
+                    android:layout_marginEnd="33dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:text="更新"
-                        android:textColor="@color/text_36"
+                        android:drawableLeft="@mipmap/ic_login_out"
+                        android:drawablePadding="3dp"
+                        android:text="退出登录"
+                        android:textColor="@color/color_1A1A1A"
                         android:textSize="14dp" />
 
                     <ImageView
-                        android:id="@+id/img_gx_r"
                         android:layout_width="12dp"
                         android:layout_height="12dp"
                         android:layout_alignParentEnd="true"
@@ -225,18 +255,36 @@
                         android:scaleType="fitXY"
                         android:src="@mipmap/ic_arrow_right_black" />
 
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_zx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="33dp">
+
                     <TextView
-                        android:id="@+id/tv_vesion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_login_destory"
+                        android:drawablePadding="3dp"
+                        android:text="注销"
+                        android:textColor="@color/color_1A1A1A"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="5dp"
-                        android:layout_toStartOf="@id/img_gx_r"
-                        android:text="V1.0.0"
-                        android:textColor="@color/text_BD"
-                        android:textSize="10dp" />
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/ic_arrow_right_black" />
+
                 </RelativeLayout>
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -24,6 +24,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    //签名配置
+    signingConfigs {
+        release {
+            storeFile file('E:/GitDevelop/GuShiCi/app/keystore/gushici.jks')
+            storePassword '123456'
+            keyAlias = 'key0'
+            keyPassword '123456'
+        }
+        debug {
+            storeFile file('E:/GitDevelop/GuShiCi/app/keystore/gushici.jks')
+            storePassword '123456'
+            keyAlias = 'key0'
+            keyPassword '123456'
+        }
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -66,26 +81,26 @@ android {
 }
 
 MobSDK {
-    appKey "31760989d6416"
-    appSecret "ddb207f94fd14fe64751dcc23ffa6bc9"
+    appKey "3190f45dd4431"
+    appSecret "78e2e1e3c3edb3c8b4f4fc2c386e58da"
     ShareSDK {
         loopShare false
         devInfo {
             QQ {
-                appId "1111133121"
-                appKey "mcWGR5yqGsMxJZjg"
+                appId "1111218507"
+                appKey "LAYFdfAJJSDXXutJ"
             }
             Wechat {
-                appId "wx2f677d639dd870b3"
-                appSecret "494387edc0d1534eb1eb91af6e7a4905"
+                appId "wxfaf8e05f962cc64a"
+                appSecret "b7eecaee25dec8ea989bf093f678c665"
                 userName "gh_afb25ac019c9"
                 path "pages/index/index.html?id=1"
-                withShareTicket true
+                withShareTicket false
                 miniprogramType 2
             }
             WechatMoments {
-                appId "wx2f677d639dd870b3"
-                appSecret "494387edc0d1534eb1eb91af6e7a4905"
+                appId "wxfaf8e05f962cc64a"
+                appSecret "b7eecaee25dec8ea989bf093f678c665"
             }
         }
     }
@@ -159,4 +174,7 @@ dependencies {
 
     // 穿山甲广告接入
     implementation(name: 'open_ad_sdk', ext: 'aar')
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    implementation 'com.zhihu.android:matisse:0.5.1'
+    implementation 'com.lcw.library:imagepicker:2.2.7'
 }

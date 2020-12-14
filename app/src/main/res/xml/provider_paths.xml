@@ -9,6 +9,10 @@
         <external-path
             name="files_root"
             path="Android/data/com.juguo.gushici/" />
+        <external-path
+            name="my_images"
+            path="Pictures"/>
+
     </paths>
 
 </resources>

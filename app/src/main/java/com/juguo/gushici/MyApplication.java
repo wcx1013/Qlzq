@@ -75,11 +75,11 @@ public class MyApplication extends Application {
         if(app==null){
             Log.d("test","app==null");
         }
-        Fragmentation.builder()
+       /* Fragmentation.builder()
                 // 显示悬浮球 ; 其他Mode:SHAKE: 摇一摇唤出   NONE：隐藏
                 .stackViewMode(Fragmentation.BUBBLE)
                 .debug(BuildConfig.DEBUG)
-                .install();
+                .install();*/
     }
 
     public static AppComponent getAppComponent() {

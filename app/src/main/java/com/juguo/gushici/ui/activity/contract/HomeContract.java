@@ -8,12 +8,17 @@ import com.juguo.gushici.response.LoginResponse;
 public interface HomeContract {
 
     interface View extends BaseMvpCallback {
-        void httpCallback(Object o);
+        void httpCallback(LoginResponse loginResponse);
+
+        void httpCallback(AccountInformationResponse response);
+
         void httpError(String e);
     }
 
     interface Presenter {
 
+        void login(User user);
 
+        void getAccountInformation();
     }
 }

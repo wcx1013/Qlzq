@@ -70,12 +70,8 @@ public class WebUrlActivity extends BaseMvpActivity<LoginPresenter> implements L
 
 
         String url = getIntent().getStringExtra("url");
+        String title = getIntent().getStringExtra("title");
 
-        initView();
-
-    }
-
-    public void initView() {
         urlWebView = (WebView) findViewById(R.id.webView);
         urlWebView.getSettings().setJavaScriptEnabled(true);
         urlWebView.setWebViewClient(new WebViewClient() {// tel://400-666-0360
@@ -91,7 +87,21 @@ public class WebUrlActivity extends BaseMvpActivity<LoginPresenter> implements L
 //                }
             }
         });
-        urlWebView.loadUrl("file:///android_asset/PrivacyGuidelines.html");
+        //urlWebView.loadUrl("file:///android_asset/PrivacyGuidelines.html");
+        urlWebView.loadUrl(url);
+        titleBarUtils = new TitleBarUtils(this);
+        titleBarUtils.setMiddleTitleText(title);
+        titleBarUtils.setLeftImageRes(R.mipmap.ic_arrow_left_black);
+        titleBarUtils.setLeftImageListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    public void initView() {
+
     }
 
     @Override

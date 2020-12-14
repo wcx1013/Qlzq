@@ -2,6 +2,7 @@ package com.juguo.gushici.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.juguo.gushici.MyApplication;
 import com.juguo.gushici.dragger.component.ActivityComponent;
@@ -13,7 +14,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseMvpActivity<P extends BaseMvpPresenter> extends BaseActivity implements BaseMvpCallback{
+public abstract class BaseMvpActivity<P extends BaseMvpPresenter> extends BaseActivity implements BaseMvpCallback, View.OnClickListener {
     @Inject //drager
     @io.reactivex.annotations.Nullable
     protected P mPresenter;
@@ -45,6 +46,11 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter> extends BaseAc
 
     public P getPresenter() {
         return mPresenter;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     @Override

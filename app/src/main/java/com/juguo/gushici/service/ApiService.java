@@ -3,20 +3,31 @@ package com.juguo.gushici.service;
 
 
 import com.juguo.gushici.base.BaseResponse;
+import com.juguo.gushici.bean.ChangeStateBean;
 import com.juguo.gushici.bean.FeedBackBean;
+import com.juguo.gushici.bean.PlanListBean;
+import com.juguo.gushici.bean.PoetryBean;
 import com.juguo.gushici.bean.VersionUpdataBean;
 import com.juguo.gushici.dragger.bean.User;
+import com.juguo.gushici.param.AddWithRemovePlanParams;
+import com.juguo.gushici.param.EditUserInfoParams;
+import com.juguo.gushici.param.LearnPlanParams;
+import com.juguo.gushici.param.PoetryListParams;
+import com.juguo.gushici.param.RecitedListParams;
+import com.juguo.gushici.param.SearchParams;
 import com.juguo.gushici.response.AccountInformationResponse;
 import com.juguo.gushici.response.LoginResponse;
 import com.juguo.gushici.response.VersionUpdataResponse;
 
+import java.io.File;
+
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
+import retrofit2.http.Part;
 
 
 public interface ApiService {
@@ -41,4 +52,34 @@ public interface ApiService {
     // 帮助反馈
     @POST("feedback/")
     Observable<BaseResponse> feedBack(@Body FeedBackBean feedBackBean);
+
+    @POST("poem-ext/list")
+    Observable<PoetryBean> requestSearch(@Body SearchParams searchParams);
+
+    @POST("poem/recited/")
+    Observable<BaseResponse> requestChangeState(@Body ChangeStateBean changeStateBean);
+
+    @POST("poem-ext/plan-list")
+    Observable<PoetryBean> requestPlanList(@Body LearnPlanParams learnPlanParams);
+
+    /**
+     * 跟搜索接口相同地址,不同请求参数
+     * @param poetryListParams
+     * @return
+     */
+    @POST("poem-ext/list")
+    Observable<PoetryBean> requestPoetryList(@Body PoetryListParams poetryListParams);
+
+    @POST("poem/plan/")
+    Observable<BaseResponse> addWithRemovePlan(@Body AddWithRemovePlanParams addWithRemovePlanParams);
+
+    @POST("poem/recited-list")
+    Observable<PoetryBean> getRecitedList(@Body RecitedListParams recitedListParams);
+
+    @POST("user/me/")
+    Observable<PoetryBean> requestEditUserNickName(@Body EditUserInfoParams editUserInfoParams);
+
+    @Multipart
+    @POST("user/me/icon")
+    Observable<PoetryBean> requestEditUserHead(@Part()MultipartBody.Part part);
 }

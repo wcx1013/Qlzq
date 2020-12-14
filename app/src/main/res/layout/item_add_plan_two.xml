@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F3F3F3"
+    android:orientation="vertical"
+    android:minHeight="82dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        android:gravity="center_vertical"
+        android:minHeight="42dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <com.juguo.gushici.view.XCRoundImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/ic_head_cover"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_cover"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/fl_right_menu">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="@color/color_292929"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="Content"
+                    android:textColor="@color/color_292929"
+                    android:textSize="12sp"
+                    android:ellipsize="end"
+                    android:lines="1"/>
+
+                <ImageView
+                    android:id="@+id/iv_already_learn"
+                    android:layout_width="26dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/ic_no_already_learn" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_right_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+        <ImageView
+            android:id="@+id/iv_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/selector_choose"
+            android:padding="10dp"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/iv_single_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginRight="20dp"
+            android:visibility="visible"
+            android:src="@drawable/selector_single_choose"
+            />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/color_AFAFAF" />
+
+</LinearLayout>

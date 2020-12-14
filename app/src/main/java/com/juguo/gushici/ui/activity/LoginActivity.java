@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,6 +20,7 @@ import com.juguo.gushici.ui.activity.contract.LoginContract;
 import com.juguo.gushici.ui.activity.presenter.LoginPresenter;
 import com.juguo.gushici.utils.Constants;
 import com.juguo.gushici.utils.MySharedPreferences;
+import com.juguo.gushici.utils.TitleBarUtils;
 import com.juguo.gushici.utils.ToastUtils;
 import com.juguo.gushici.utils.Util;
 
@@ -91,6 +93,15 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         mContext = this;
         mySharedPreferences = new MySharedPreferences(this, "Shared");
 
+        TitleBarUtils titleBarUtils = new TitleBarUtils(this);
+        titleBarUtils.setMiddleTitleText("登录");
+        titleBarUtils.setLeftImageRes(R.mipmap.ic_arrow_left_black);
+        titleBarUtils.setLeftImageListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @OnClick({R.id.wx_login, R.id.qq_login, R.id.ll_ty, R.id.tv_yhxy, R.id.tv_yszy})
@@ -150,10 +161,15 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     private void qqLogin(String str) {
         Platform platform = ShareSDK.getPlatform(str);
         ShareSDK.setActivity(this);
+        //移除授权状态和本地缓存，下次授权会重新授权
+        platform.SSOSetting(true);
+        platform.removeAccount(true);
         platform.setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int action, HashMap<String, Object> hashMap) {
                 if (action == Platform.ACTION_USER_INFOR) {
+
+                    Log.d("tag","11111111");
                     PlatformDb platDB = platform.getDb();//获取数平台数据DB
                     //通过DB获取各种数据
                     String token = platDB.getToken();
@@ -186,10 +202,12 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
+                Log.d("tag","");
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
+                Log.d("tag","");
             }
         });
         platform.showUser(null);
@@ -255,6 +273,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
                     // 未开通会员
                     tz("", "");
                 }
+                finish();
             }
         }
     }
@@ -276,4 +295,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         startActivity(inten);
         finish();*/
     }
+
+
 }

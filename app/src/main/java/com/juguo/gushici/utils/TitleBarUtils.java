@@ -2,6 +2,7 @@ package com.juguo.gushici.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,9 @@ public class TitleBarUtils {
     private ImageView right_imageview;
     private RelativeLayout title_left_layout;
 
+    public View getTitleView(){
+        return titleView;
+    }
 
     public TitleBarUtils(Activity context) {
         titleView = context.findViewById(R.id.title_bar);
@@ -160,6 +164,14 @@ public class TitleBarUtils {
         return this;
     }
 
+    public TitleBarUtils setRightImageDrawable(Drawable drawable) {
+
+        right_imageview.setVisibility(drawable != null ? View.VISIBLE : View.GONE);
+        right_imageview.setImageDrawable(drawable);
+
+        return this;
+    }
+
     /**
      * 左边文字按钮
      *
@@ -172,6 +184,10 @@ public class TitleBarUtils {
         right_textview.setText(text);
 
         return this;
+    }
+
+    public TextView getRightText(){
+        return right_textview;
     }
 
 

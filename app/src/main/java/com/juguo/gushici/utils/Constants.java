@@ -10,19 +10,20 @@ public class Constants {
     // 测试环境
     public static String BASE_URL = "http://app.91juguo.com/testJ/";
     // 正式环境
- //   public static String BASE_URL = "http://app.91juguo.com/api/";
+    //public static String BASE_URL = "http://app.91juguo.com/api/";
+   // public static String BASE_URL = "http://172.16.0.47:8080/";
 //    public static String BASE_URL = "http://app.91juguo.com/bgtest/";
 
     // 微信appId
-    public static final String WX_APP_ID = "wx2f677d639dd870b3";
+    public static final String WX_APP_ID = "wxfaf8e05f962cc64a";
     // 申请支付功能的商户号
     public static final String WX_MCH_ID = "1525928841";
     // 商品平台API密钥
-    public static final String WX_PRIVATE_KEY = "wstl2016wstl2016wstl2016wstl2016";
+    public static final String WX_PRIVATE_KEY = "47c6ccf7fdda3cdb0cc04c2ab0576e22";
 
     // 穿山甲
-    public static final String CSJ_APP_ID = "5120395";// 应用id
-    public static final String CSJ_CODE_ID = "887403978";// 代码位id
+    public static final String CSJ_APP_ID = "5126379";// 应用id
+    public static final String CSJ_CODE_ID = "887412013";// 代码位id
 
     // 本地环境
 //    public static String BASE_URL = "http://172.16.0.41:8080/";

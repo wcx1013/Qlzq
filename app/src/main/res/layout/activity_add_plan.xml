@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:id="@+id/fl_root">
+
+    <FrameLayout
+        android:id="@+id/fl_back"
+        android:layout_width="46dp"
+        android:layout_height="46dp">
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_arrow_left_black"/>
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical">
+        <RadioButton
+            android:id="@+id/rb_text_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="课本"
+            android:textSize="17sp"
+            android:textColor="@color/color_141414"
+            android:layout_marginRight="35dp"
+            android:background="@null"
+            android:button="@null"/>
+        <RadioButton
+            android:id="@+id/rb_ec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="课外"
+            android:textSize="17sp"
+            android:textColor="@color/color_141414"
+            android:background="@null"
+            android:button="@null"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_add_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:text="@string/add_plan"
+        android:textColor="@color/color_747474"
+        android:layout_gravity="right"/>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="46dp"/>
+</FrameLayout>

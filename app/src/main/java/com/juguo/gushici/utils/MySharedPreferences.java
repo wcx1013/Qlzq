@@ -9,6 +9,8 @@ public class MySharedPreferences {
     private SharedPreferences.Editor editor;
     private Context context;
 
+    public static String SEARCH_RECODER="search_recoder";
+
     /**
      * 构造方法
      *

@@ -1,6 +1,19 @@
 <resources>
-    <string name="app_name">GuShiCi</string>
+    <string name="app_name">小学古诗词</string>
     <string name="erro">服务器异常，请稍后再试！</string>
     <string name="w_res">没有搜索到该资源！</string>
     <string name="login_failure">登录失败，请重新登录！</string>
+
+
+    <string name="learn_report">学习报告</string>
+    <string name="learn_plan">学习计划</string>
+    <string name="look_all">查看全部</string>
+    <string name="search">搜索</string>
+    <string name="search_hint_content">搜索名称/作者</string>
+    <string name="search_empty_result">您的搜索为空</string>
+    <string name="search_recoder">搜索历史</string>
+    <string name="add_plan">添加计划</string>
+    <string name="add_plan_all">批量添加</string>
+    <string name="clear">清除</string>
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 </resources>
