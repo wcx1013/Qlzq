@@ -8,9 +8,9 @@ public class Constants {
     //  573c67e79ee69e07ae4087ede27d0465
 
     // 测试环境
-    public static String BASE_URL = "http://app.91juguo.com/testJ/";
+    //public static String BASE_URL = "http://app.91juguo.com/testJ/";
     // 正式环境
-    //public static String BASE_URL = "http://app.91juguo.com/api/";
+    public static String BASE_URL = "http://app.91juguo.com/api/";
    // public static String BASE_URL = "http://172.16.0.47:8080/";
 //    public static String BASE_URL = "http://app.91juguo.com/bgtest/";
 
