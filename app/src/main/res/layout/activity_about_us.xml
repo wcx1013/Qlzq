@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
-            android:text="小学古诗词"
+            android:text="爱学古诗词"
             android:textColor="@color/text_23"
             android:textSize="15dp" />
     </LinearLayout>

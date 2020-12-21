@@ -1,5 +1,6 @@
 package com.juguo.gushici.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -18,6 +19,9 @@ import com.juguo.gushici.bean.AddPlanTwoBean;
 import com.juguo.gushici.bean.PoetryBean;
 import com.juguo.gushici.param.AddWithRemovePlanParams;
 import com.juguo.gushici.param.PoetryListParams;
+import com.juguo.gushici.ui.activity.AddPlanActivity;
+import com.juguo.gushici.ui.activity.ClassChooseActivity;
+import com.juguo.gushici.ui.activity.ClassChooseListActivity;
 import com.juguo.gushici.ui.activity.contract.AddPlanContract;
 import com.juguo.gushici.ui.activity.presenter.AddPlanPresenter;
 import com.juguo.gushici.utils.ListUtils;
@@ -47,6 +51,15 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
     private boolean mIsMultipleChoose;
     private int mCurrentClickItem;
 
+    public static TextBookFragment newInstance(int ifClass) {
+
+        Bundle args = new Bundle();
+        args.putInt(ClassChooseActivity.IFCLASS, ifClass);
+        TextBookFragment fragment = new TextBookFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayout() {
         return R.layout.fragment_add_plan;
@@ -67,7 +80,7 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
         mTvAllChoose = mRootView.findViewById(R.id.tv_all_choose);
         mTvConfirmAddPlan = mRootView.findViewById(R.id.tv_confirm_plan);
         initAdapter();
-        mIfClass = 1;
+        mIfClass = getArguments().getInt(ClassChooseActivity.IFCLASS);
         mGrade = 1;
         requestList();
 
@@ -153,8 +166,8 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
                 switch (view.getId()) {
                     case R.id.iv_single_choose:
 
-                        if (mSecondTypeAdapter.getData().get(i).isChoose()) {
-
+                        if (mSecondTypeAdapter.getData().get(i).isSingleChoose()) {
+                            ToastUtils.shortShowStr(getActivity(), "已经添加过了");
                         } else {
                             requestAddPlan(mSecondTypeAdapter.getData().get(i).getPoetryBean().getId());
                         }
@@ -162,10 +175,12 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
                     //多选
                     case R.id.iv_choose:
 
-                        if (!mSecondTypeAdapter.getData().get(i).isChoose()) {
+                        if (!mSecondTypeAdapter.getData().get(i).isSingleChoose()) {
                             boolean currentState = mSecondTypeAdapter.getData().get(i).isChoose();
                             mSecondTypeAdapter.getData().get(i).setChoose(!currentState);
                             mSecondTypeAdapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtils.shortShowStr(getActivity(), "已经添加过了");
                         }
                         break;
 
@@ -200,7 +215,23 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
 
         if (o.isSuccess()) {
 
-            mSecondTypeAdapter.getData().get(mCurrentClickItem).setChoose(true);
+            String[] chooseIdArray = null;
+            if (mIsMultipleChoose) {
+
+                chooseIdArray = getChooseId().split(",");
+            } else {
+                chooseIdArray = mSingChooseId.split(",");
+            }
+            for (int i = 0; i < chooseIdArray.length; i++) {
+
+                for (int j = 0; j < mSecondTypeAdapter.getData().size(); j++) {
+
+                    if (chooseIdArray[i].equals(mSecondTypeAdapter.getData().get(j).getPoetryBean().getId())) {
+
+                        mSecondTypeAdapter.getData().get(j).setSingleChoose(true);
+                    }
+                }
+            }
             mSecondTypeAdapter.notifyDataSetChanged();
             ToastUtils.shortShowStr(getActivity(), "添加计划成功");
         }
@@ -235,10 +266,14 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
             mLlBottomChoose.setVisibility(View.VISIBLE);
         } else {
             mLlBottomChoose.setVisibility(View.GONE);
+            mTvAllChoose.setSelected(false);
         }
         for (int i = 0; i < mSecondTypeAdapter.getData().size(); i++) {
 
             mSecondTypeAdapter.getData().get(i).setOpenMultipleChoose(isOpen);
+            if (!isOpen) {
+                mSecondTypeAdapter.getData().get(i).setChoose(false);
+            }
         }
         mSecondTypeAdapter.notifyDataSetChanged();
     }
@@ -250,13 +285,12 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
         }
         for (int i = 0; i < mSecondTypeAdapter.getData().size(); i++) {
 
-            boolean choose = mSecondTypeAdapter.getData().get(i).isChoose();
-            if (choose) {
-                mSecondTypeAdapter.getData().get(i).setChoose(false);
-            } else {
-                mSecondTypeAdapter.getData().get(i).setChoose(true);
+            boolean singleChoose = mSecondTypeAdapter.getData().get(i).isSingleChoose();
+            if (!singleChoose) {
+                mSecondTypeAdapter.getData().get(i).setChoose(!mTvAllChoose.isSelected());
             }
         }
+        mTvAllChoose.setSelected(!mTvAllChoose.isSelected());
         mSecondTypeAdapter.notifyDataSetChanged();
     }
 
@@ -295,6 +329,8 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
         mPresenter.addPlan(addWithRemovePlanParams, true);
     }
 
+    private String mSingChooseId;
+
     /**
      * 单选
      *
@@ -302,6 +338,7 @@ public class TextBookFragment extends BaseMvpFragment<AddPlanPresenter> implemen
      */
     private void requestAddPlan(String id) {
 
+        mSingChooseId = id;
         AddWithRemovePlanParams addWithRemovePlanParams = new AddWithRemovePlanParams();
         AddWithRemovePlanParams.PlanBean planBean = new AddWithRemovePlanParams.PlanBean();
         planBean.setAddPoemIds(id);

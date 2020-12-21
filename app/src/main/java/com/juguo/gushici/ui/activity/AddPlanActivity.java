@@ -29,7 +29,7 @@ public class AddPlanActivity extends BaseMvpActivity<AddPlanPresenter> implement
 
 
     private TextBookFragment mTextBookFragment;
-    private ExtraCurricularFragment mExtraCurricularFragment;
+    private TextBookFragment mExtraCurricularFragment;
 
     private RadioGroup mRadioGroup;
     private RadioButton mRbTextBook;
@@ -62,8 +62,8 @@ public class AddPlanActivity extends BaseMvpActivity<AddPlanPresenter> implement
         mRbEC = findViewById(R.id.rb_ec);
 
         CommUtils.setImmerseLayout(mFlRoot, this);
-        mTextBookFragment = new TextBookFragment();
-        mExtraCurricularFragment = new ExtraCurricularFragment();
+        mTextBookFragment = TextBookFragment.newInstance(1);
+        mExtraCurricularFragment = TextBookFragment.newInstance(0);
         loadMultipleRootFragment(R.id.fl_content, 0, mTextBookFragment, mExtraCurricularFragment);
 
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -126,14 +126,14 @@ public class AddPlanActivity extends BaseMvpActivity<AddPlanPresenter> implement
     private void addPlan() {
 
         boolean isOpen = false;
-        if (mTvAddPlan.getText().toString().equals("添加计划")) {
+        if (mTvAddPlan.getText().toString().equals("批量添加")) {
 
             isOpen = true;
             mTvAddPlan.setText("取消");
         } else {
 
             isOpen = false;
-            mTvAddPlan.setText("添加计划");
+            mTvAddPlan.setText("批量添加");
         }
         if (mFragmentType == 1) {
 

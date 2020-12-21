@@ -31,6 +31,7 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
 
     private int mGrade = 1;
     private int mIfClass = 1;//是否是课内。1课内0课外
+    private boolean mIsResume;
 
     @Override
     protected int getLayout() {
@@ -110,9 +111,18 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (mIsResume) {
+            requestList();
+        } else {
+            mIsResume = true;
+        }
+    }
+
+    @Override
     public void httpCallback(PoetryBean poetryBean) {
 
-        dialogDismiss();
         if (!ListUtils.isEmpty(poetryBean.getList())) {
 
             List<AddPlanTwoBean> twoBeanList = new ArrayList<>();
@@ -128,12 +138,12 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
             mClassChooseListAdapter.setNewData(new ArrayList<>());
             //mSecondTypeAdapter.getEmptyView().setVisibility(View.VISIBLE);
         }
+        dialogDismiss();
     }
 
     @Override
     public void httpAddPlanCallback(BaseResponse o) {
 
-        dialogDismiss();
         if (o.isSuccess()) {
 
             //mClassChooseListAdapter.getData().get(index).setChoose(false);
@@ -143,6 +153,7 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
             mClassChooseListAdapter.notifyDataSetChanged();
         } else {
         }
+        dialogDismiss();
     }
 
     @Override

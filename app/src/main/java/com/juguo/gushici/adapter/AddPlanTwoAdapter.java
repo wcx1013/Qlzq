@@ -32,11 +32,11 @@ public class AddPlanTwoAdapter extends BaseQuickAdapter<AddPlanTwoBean, BaseView
         tvTitle.setText(mode.getPoetryBean().getName());
         tvContent.setText(mode.getPoetryBean().getStDesc());
 
+
         if (mode.isOpenMultipleChoose()) {
 
             ivSingleChoose.setVisibility(View.GONE);
             ivMultipleChoose.setVisibility(View.VISIBLE);
-            ivMultipleChoose.setSelected(mode.isChoose());
         } else {
             ivSingleChoose.setVisibility(View.VISIBLE);
             ivMultipleChoose.setVisibility(View.GONE);
@@ -49,18 +49,18 @@ public class AddPlanTwoAdapter extends BaseQuickAdapter<AddPlanTwoBean, BaseView
             ivSingleChoose.setEnabled(false);
             mode.setChoose(true);
             ivSingleChoose.setSelected(mode.isChoose());
-            //ivSingleChoose.setImageDrawable(mContext.getResources().getDrawable(R.mipmap.ic_add_plan_single_choose_pre));
             ivMultipleChoose.setEnabled(false);
         } else {
             ivAlready.setVisibility(View.GONE);
-            ivSingleChoose.setEnabled(true);
-            ivSingleChoose.setSelected(mode.isChoose());
-            //mode.setChoose(false);
-            //ivSingleChoose.setImageDrawable(mContext.getResources().getDrawable(R.mipmap.ic_add_plan_single_choose));
-            ivMultipleChoose.setEnabled(true);
-            ivMultipleChoose.setSelected(mode.isChoose());
-        }
 
+            if(mode.isSingleChoose()){
+                ivSingleChoose.setSelected(true);
+                ivMultipleChoose.setSelected(false);
+            }else {
+                ivSingleChoose.setSelected(mode.isChoose());
+                ivMultipleChoose.setSelected(mode.isChoose());
+            }
+        }
         baseViewHolder.addOnClickListener(R.id.iv_single_choose,R.id.iv_choose);
     }
 }

@@ -4,9 +4,19 @@ public class AddPlanTwoBean {
 
     private boolean choose;
 
+    private boolean singleChooseState;//单选
+
     private boolean openMultipleChoose;
 
     private PoetryBean.PoetryInfo mPoetryBean;
+
+    public boolean isSingleChoose() {
+        return singleChooseState;
+    }
+
+    public void setSingleChoose(boolean singleChoose) {
+        this.singleChooseState = singleChoose;
+    }
 
     public boolean isOpenMultipleChoose() {
         return openMultipleChoose;

@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="154dp"
             android:layout_height="wrap_content"
-            android:text="小学古诗词"
+            android:text="爱学古诗词"
             android:textSize="22sp"
             android:gravity="center"
             android:textColor="@color/text_23"

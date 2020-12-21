@@ -22,8 +22,8 @@ public class Constants {
     public static final String WX_PRIVATE_KEY = "47c6ccf7fdda3cdb0cc04c2ab0576e22";
 
     // 穿山甲
-    public static final String CSJ_APP_ID = "5126379";// 应用id
-    public static final String CSJ_CODE_ID = "887412013";// 代码位id
+    public static final String CSJ_APP_ID = "5128020";// 应用id
+    public static final String CSJ_CODE_ID = "887414055";// 代码位id
 
     // 本地环境
 //    public static String BASE_URL = "http://172.16.0.41:8080/";

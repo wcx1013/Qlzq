@@ -304,15 +304,15 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
 
 
         //设置文字
-//        String userLicenseAgreement = "《小学古诗词App用户使用协议》";
+//        String userLicenseAgreement = "《爱学古诗词App用户使用协议》";
         String userLicenseAgreement = "《" + getString(R.string.app_name) + "App用户使用协议》";
         String privacyAgreement = "《" + getString(R.string.app_name) + "App用户隐私协议》";
 
-//        String userLicenseAgreement = "《小学古诗词App用户使用协议》";
-//        String privacyAgreement = "《小学古诗词App用户隐私协议》";
+//        String userLicenseAgreement = "《爱学古诗词App用户使用协议》";
+//        String privacyAgreement = "《爱学古诗词App用户隐私协议》";
 
-        String message = "感谢您信任并使用小学古诗词的产品和服务。在您使用小学古诗词App前，请认真阅读并了解我们的";
-        String messageAll = "感谢您信任并使用小学古诗词的产品和服务。在您使用小学古诗词App前，请认真阅读并了解我们的" + userLicenseAgreement + "和" + privacyAgreement;
+        String message = "感谢您信任并使用爱学古诗词的产品和服务。在您使用爱学古诗词App前，请认真阅读并了解我们的";
+        String messageAll = "感谢您信任并使用爱学古诗词的产品和服务。在您使用爱学古诗词App前，请认真阅读并了解我们的" + userLicenseAgreement + "和" + privacyAgreement;
 
         int start_User = message.length();
         int end_User = start_User + userLicenseAgreement.length() - 1;
@@ -328,6 +328,8 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
             public void onClick(@NonNull View widget) {
                 Intent userLicenseIntent = new Intent(MainActivity.this, WebUrlActivity.class);
                 userLicenseIntent.putExtra("url", "file:///android_asset/UserLicenseAgreement.html");
+                userLicenseIntent.putExtra("title", "用户许可协议");
+                startActivity(userLicenseIntent);
             }
         };
         ClickableSpan privacyClickableSpan = new ClickableSpan() {

@@ -68,8 +68,6 @@ public class ExtraCurricularFragment extends BaseMvpFragment<AddPlanPresenter> i
         mTvAllChoose = mRootView.findViewById(R.id.tv_all_choose);
         mTvConfirmAddPlan = mRootView.findViewById(R.id.tv_confirm_plan);
         initAdapter();
-        mIfClass = 1;
-        mGrade = 1;
         requestList();
 
         mTvAllChoose.setOnClickListener(new View.OnClickListener() {

@@ -97,6 +97,6 @@
         android:layout_height="1dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
-        android:background="@color/color_AFAFAF" />
+        android:background="@color/color_E6E6E6" />
 
 </LinearLayout>

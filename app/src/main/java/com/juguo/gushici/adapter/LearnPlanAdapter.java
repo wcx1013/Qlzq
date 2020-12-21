@@ -37,6 +37,7 @@ public class LearnPlanAdapter extends BaseQuickAdapter<PoetryBean.PoetryInfo, Ba
 
         tvTitle.setText(mode.getName());
         tvContent.setText(mode.getStDesc());
-        Util.displayCircleCropImgView(mContext, ivCover, "userIcon", R.mipmap.ic_user_place);
+        //Util.displayCircleCropImgView(mContext, ivCover, "userIcon", R.mipmap.ic_user_place);
+        baseViewHolder.addOnClickListener(R.id.tv_remove);
     }
 }

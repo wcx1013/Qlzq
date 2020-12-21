@@ -161,9 +161,6 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     private void qqLogin(String str) {
         Platform platform = ShareSDK.getPlatform(str);
         ShareSDK.setActivity(this);
-        //移除授权状态和本地缓存，下次授权会重新授权
-        platform.SSOSetting(true);
-        platform.removeAccount(true);
         platform.setPlatformActionListener(new PlatformActionListener() {
             @Override
             public void onComplete(Platform platform, int action, HashMap<String, Object> hashMap) {

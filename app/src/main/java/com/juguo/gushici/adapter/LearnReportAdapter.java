@@ -35,12 +35,12 @@ public class LearnReportAdapter extends BaseQuickAdapter<LearnReportBean, BaseVi
 
         if (!ListUtils.isEmpty(mode.getBookLst())) {
 
-            if (baseViewHolder.getLayoutPosition() < mData.size() - 1) {
+            //if (baseViewHolder.getLayoutPosition() < mData.size() - 1) {
 
                 int lineHeight = (int) ((mode.getBookLst().size() + 0.5) * mContext.getResources().getDimensionPixelOffset(R.dimen.dp_20));
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(mContext.getResources().getDimensionPixelOffset(R.dimen.dp_1), lineHeight);
                 viewLine.setLayoutParams(layoutParams);
-            }
+            //}
         }
         addBookNameText(lLBookName, mode.getBookLst());
     }

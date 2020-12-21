@@ -10,7 +10,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juguo.gushici.R;
 import com.juguo.gushici.adapter.LearnPlanAdapter;
 import com.juguo.gushici.base.BaseMvpActivity;
+import com.juguo.gushici.base.BaseResponse;
 import com.juguo.gushici.bean.PoetryBean;
+import com.juguo.gushici.param.AddWithRemovePlanParams;
 import com.juguo.gushici.param.LearnPlanParams;
 import com.juguo.gushici.response.AccountInformationResponse;
 import com.juguo.gushici.response.LoginResponse;
@@ -20,6 +22,7 @@ import com.juguo.gushici.ui.activity.presenter.HomePresenter;
 import com.juguo.gushici.ui.activity.presenter.LearnPresenter;
 import com.juguo.gushici.utils.ListUtils;
 import com.juguo.gushici.utils.TitleBarUtils;
+import com.juguo.gushici.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -30,6 +33,8 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
 
     private RecyclerView mRvList;
     private LearnPlanAdapter mLearnPlanAdapter;
+    private int mCurrentIndex;
+    private boolean mIsResume;
 
     @Override
     protected int getLayout() {
@@ -68,6 +73,17 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
         requestPlan();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mIsResume) {
+            requestPlan();
+        } else {
+            mIsResume = true;
+        }
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -87,6 +103,18 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
             mLearnPlanAdapter.getEmptyView().setVisibility(View.VISIBLE);
         }
         dialogDismiss();
+    }
+
+    @Override
+    public void httpRemovePlanCallback(BaseResponse o) {
+
+        dialogDismiss();
+        mLearnPlanAdapter.remove(mCurrentIndex);
+        if(ListUtils.isEmpty(mLearnPlanAdapter.getData())){
+            mLearnPlanAdapter.setNewData(new ArrayList<>());
+            mLearnPlanAdapter.getEmptyView().setVisibility(View.VISIBLE);
+        }
+        ToastUtils.shortShowStr(this, "移除成功");
     }
 
     @Override
@@ -112,6 +140,15 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
                 clickListItem(i);
             }
         });
+        mLearnPlanAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                if (view.getId() == R.id.tv_remove) {
+                    mCurrentIndex = i;
+                    removePlan(mLearnPlanAdapter.getData().get(i).getId());
+                }
+            }
+        });
     }
 
     private void addPlan() {
@@ -133,5 +170,15 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
         LearnPlanParams.LearnPlanBean learnPlanBean = new LearnPlanParams.LearnPlanBean();
         learnPlanParams.setParam(learnPlanBean);
         mPresenter.getLearnPlanList(learnPlanParams);
+    }
+
+    private void removePlan(String id) {
+
+        dialogShow();
+        AddWithRemovePlanParams addWithRemovePlanParams = new AddWithRemovePlanParams();
+        AddWithRemovePlanParams.PlanBean planBean = new AddWithRemovePlanParams.PlanBean();
+        planBean.setRmPoemIds(id);
+        addWithRemovePlanParams.setParam(planBean);
+        mPresenter.removePlan(addWithRemovePlanParams);
     }
 }

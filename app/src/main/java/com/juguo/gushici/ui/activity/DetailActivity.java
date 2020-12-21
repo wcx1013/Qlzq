@@ -114,6 +114,7 @@ public class DetailActivity extends BaseMvpActivity<DetailPresenter> implements 
                 break;
             case R.id.iv_share:
 
+                shareSelectDialog();
                 break;
             case R.id.iv_already_learn:
                 changeState();
@@ -141,11 +142,11 @@ public class DetailActivity extends BaseMvpActivity<DetailPresenter> implements 
         if (mRecited == 0 || mRecited == 2) {
 
             mIvAlready.setImageDrawable(getResources().getDrawable(R.mipmap.ic_no_already_learn));
-            mRecited = 1;
+            //mRecited = 1;
         } else {
 
             mIvAlready.setImageDrawable(getResources().getDrawable(R.mipmap.ic_already_learn));
-            mRecited = 2;
+            //mRecited = 2;
         }
     }
 

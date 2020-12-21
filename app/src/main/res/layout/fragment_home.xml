@@ -123,7 +123,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!--小学Class1-Class6-->
+            <!--爱学Class1-Class6-->
             <ImageView
                 android:id="@+id/iv_home_class1"
                 android:layout_width="match_parent"

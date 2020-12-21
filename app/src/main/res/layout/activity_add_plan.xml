@@ -51,7 +51,7 @@
         android:layout_height="46dp"
         android:gravity="center_vertical"
         android:layout_marginRight="20dp"
-        android:text="@string/add_plan"
+        android:text="@string/add_plan_all"
         android:textColor="@color/color_747474"
         android:layout_gravity="right"/>
 

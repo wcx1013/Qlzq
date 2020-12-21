@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">小学古诗词</string>
+    <string name="app_name">爱学古诗词</string>
     <string name="erro">服务器异常，请稍后再试！</string>
     <string name="w_res">没有搜索到该资源！</string>
     <string name="login_failure">登录失败，请重新登录！</string>
