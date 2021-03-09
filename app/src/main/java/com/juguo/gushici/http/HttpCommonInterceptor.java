@@ -90,6 +90,9 @@ public class HttpCommonInterceptor implements Interceptor {
                 } else if (QQ.NAME.equals(loginType)) {
                     userInfo.setType(4);
                     userInfo.setUnionInfo(userId);
+                }else if("0".equals(loginType)){
+                    userInfo.setType(0);
+                    userInfo.setUnionInfo(userId);
                 }
             } else {
                 userInfo.setType(2);

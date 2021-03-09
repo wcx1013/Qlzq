@@ -35,6 +35,7 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
     private LearnPlanAdapter mLearnPlanAdapter;
     private int mCurrentIndex;
     private boolean mIsResume;
+    private PoetryBean mPoetryBean;
 
     @Override
     protected int getLayout() {
@@ -95,6 +96,7 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
 
         if (!ListUtils.isEmpty(poetryBean.getList())) {
 
+            this.mPoetryBean = poetryBean;
             mLearnPlanAdapter.setNewData(poetryBean.getList());
             mLearnPlanAdapter.getEmptyView().setVisibility(View.GONE);
         } else {
@@ -110,7 +112,7 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
 
         dialogDismiss();
         mLearnPlanAdapter.remove(mCurrentIndex);
-        if(ListUtils.isEmpty(mLearnPlanAdapter.getData())){
+        if (ListUtils.isEmpty(mLearnPlanAdapter.getData())) {
             mLearnPlanAdapter.setNewData(new ArrayList<>());
             mLearnPlanAdapter.getEmptyView().setVisibility(View.VISIBLE);
         }
@@ -160,7 +162,8 @@ public class LearnPlanActivity extends BaseMvpActivity<LearnPresenter> implement
     private void clickListItem(int index) {
 
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.POETRY_DATA, mLearnPlanAdapter.getData().get(index));
+        intent.putExtra(DetailActivity.POETRY_DATA, mPoetryBean);
+        intent.putExtra(DetailActivity.POETRY_INDEX, index);
         startActivity(intent);
     }
 

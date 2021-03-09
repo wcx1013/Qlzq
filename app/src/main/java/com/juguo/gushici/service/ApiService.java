@@ -3,10 +3,12 @@ package com.juguo.gushici.service;
 
 
 import com.juguo.gushici.base.BaseResponse;
+import com.juguo.gushici.bean.AddPayOrderBean;
 import com.juguo.gushici.bean.ChangeStateBean;
 import com.juguo.gushici.bean.FeedBackBean;
 import com.juguo.gushici.bean.PlanListBean;
 import com.juguo.gushici.bean.PoetryBean;
+import com.juguo.gushici.bean.RegisterBean;
 import com.juguo.gushici.bean.VersionUpdataBean;
 import com.juguo.gushici.dragger.bean.User;
 import com.juguo.gushici.param.AddWithRemovePlanParams;
@@ -16,7 +18,10 @@ import com.juguo.gushici.param.PoetryListParams;
 import com.juguo.gushici.param.RecitedListParams;
 import com.juguo.gushici.param.SearchParams;
 import com.juguo.gushici.response.AccountInformationResponse;
+import com.juguo.gushici.response.AddPayOrderResponse;
 import com.juguo.gushici.response.LoginResponse;
+import com.juguo.gushici.response.MemberLevelResponse;
+import com.juguo.gushici.response.QueryOrderResponse;
 import com.juguo.gushici.response.VersionUpdataResponse;
 
 import java.io.File;
@@ -28,6 +33,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 
 public interface ApiService {
@@ -44,6 +50,9 @@ public interface ApiService {
     // 获取用户账号信息
     @GET("user/me/")
     Observable<AccountInformationResponse> accountInformation();
+
+    @POST("user/register")
+    Observable<LoginResponse> register(@Body RegisterBean registerBean);
 
     // 退出登录
     @GET("user/logout")
@@ -82,4 +91,16 @@ public interface ApiService {
     @Multipart
     @POST("user/me/icon")
     Observable<PoetryBean> requestEditUserHead(@Part()MultipartBody.Part part);
+
+    // 添加订单
+    @POST("order/")
+    Observable<AddPayOrderResponse> addPayOrder(@Body AddPayOrderBean addPayOrderBean);
+
+    // 查询订单
+    @GET("order/{id}")
+    Observable<QueryOrderResponse> queryOrder(@Path("id") String id);
+
+    // 获取会员价格列表
+    @GET("member-level/list")
+    Observable<MemberLevelResponse> memberLevel();
 }

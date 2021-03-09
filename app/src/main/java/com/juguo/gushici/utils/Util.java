@@ -335,7 +335,7 @@ public class Util {
      * @return
      * @throws Exception
      */
-    public static String changeF2Y(Context context, int amount) {
+    public static String changeF2Y( int amount) {
         return BigDecimal.valueOf(amount).divide(new BigDecimal(100)).toString();
     }
 

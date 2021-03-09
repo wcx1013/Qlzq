@@ -7,6 +7,7 @@ import com.juguo.gushici.dragger.ActivityScope;
 import com.juguo.gushici.dragger.module.ActivityModule;
 import com.juguo.gushici.ui.MainActivity;
 import com.juguo.gushici.ui.activity.AddPlanActivity;
+import com.juguo.gushici.ui.activity.AdvertActivity;
 import com.juguo.gushici.ui.activity.ClassChooseActivity;
 import com.juguo.gushici.ui.activity.ClassChooseListActivity;
 import com.juguo.gushici.ui.activity.DetailActivity;
@@ -15,6 +16,8 @@ import com.juguo.gushici.ui.activity.HelpFeedbackActivity;
 import com.juguo.gushici.ui.activity.LearnPlanActivity;
 import com.juguo.gushici.ui.activity.LearnReportActivity;
 import com.juguo.gushici.ui.activity.LoginActivity;
+import com.juguo.gushici.ui.activity.LoginPhoneActivity;
+import com.juguo.gushici.ui.activity.RegisterActivity;
 import com.juguo.gushici.ui.activity.SearchActivity;
 import com.juguo.gushici.ui.activity.SettingActivity;
 import com.juguo.gushici.ui.activity.SplashActivity;
@@ -61,5 +64,11 @@ public interface ActivityComponent {
     void inject(SettingActivity settingActivity);
 
     void inject(HelpFeedbackActivity helpFeedbackActivity);
+
+    void inject(LoginPhoneActivity loginPhoneActivity);
+
+    void inject(AdvertActivity advertActivity);
+
+    void inject(RegisterActivity registerActivity);
 
 }

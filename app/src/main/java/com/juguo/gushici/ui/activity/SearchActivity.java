@@ -49,6 +49,7 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
 
     private MySharedPreferences mySharedPreferences;
     private String mSearchKey;
+    private PoetryBean mPoetryBean;
 
     @Override
     protected int getLayout() {
@@ -134,7 +135,8 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
 
                 Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
-                intent.putExtra(DetailActivity.POETRY_DATA, mSearchAdapter.getData().get(i));
+                intent.putExtra(DetailActivity.POETRY_DATA, mPoetryBean);
+                intent.putExtra(DetailActivity.POETRY_INDEX, i);
                 startActivity(intent);
             }
         });
@@ -157,6 +159,7 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
         dialogDismiss();
         if (!ListUtils.isEmpty(poetryBean.getList())) {
 
+            this.mPoetryBean = poetryBean;
             List<PoetryBean.PoetryInfo> poetryInfoList = poetryBean.getList();
             mSearchAdapter.setNewData(poetryInfoList);
             mSearchAdapter.getEmptyView().setVisibility(View.GONE);
@@ -169,7 +172,7 @@ public class SearchActivity extends BaseMvpActivity<SearchPresenter> implements 
         for (int i = mSearchRecoderAdapter.getData().size() - 1; i >= 0; i--) {
 
             String currentSearch = mSearchKey;
-            String localSearch = mSearchRecoderAdapter.getData().get(i).toString();
+            String localSearch = mSearchRecoderAdapter.getData().get(i);
             if (currentSearch.equals(localSearch)) {
                 mSearchRecoderAdapter.remove(i);
             }

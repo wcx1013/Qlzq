@@ -5,16 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问网络连接，可能产生GPRS流量 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序写入外部存储，如SD卡上写文件 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取网络信息状态，如当前的网络连接是否有效 -->
-    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> &lt;!&ndash; 通过WiFi或移动基站的方式获取用户错略的经纬度信息，定位精度大概误差在30~1500米 &ndash;&gt;-->
-    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> &lt;!&ndash; 通过GPS芯片接收卫星的定位信息，定位精度达10米以内 &ndash;&gt;-->
-    <!--    <uses-permission android:name="android.permission.ACCESS_GPS" /> &lt;!&ndash; gps定位 &ndash;&gt;-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /><!-- WIFI状态 -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> &lt;!&ndash; 通过WiFi或移动基站的方式获取用户错略的经纬度信息，定位精度大概误差在30~1500米 &ndash;&gt; -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> &lt;!&ndash; 通过GPS芯片接收卫星的定位信息，定位精度达10米以内 &ndash;&gt; -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_GPS" /> &lt;!&ndash; gps定位 &ndash;&gt; -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- WIFI状态 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 允许程序读取外部存储 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!--    <uses-permission android:name="android.permission.READ_LOGS" />-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.juguo.gushici.MyApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_about_us_logo"
         android:label="@string/app_name"
@@ -22,20 +22,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Base.AppTheme">
-
-        <!--头条适配-->
+        <activity android:name=".ui.activity.RegisterActivity"></activity>
+        <!-- 头条适配 -->
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640" />
-
-        <!--value的值填写你在友盟后台申请的应用Appkey-->
+            android:value="640" /> <!-- value的值填写你在友盟后台申请的应用Appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="5fd192ed19bda368eb4d4810" />
-
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
@@ -48,9 +45,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider>
-
-        <!-- 穿山甲start -->
+        </provider> <!-- 穿山甲start -->
         <provider
             android:name="com.bytedance.sdk.openadsdk.TTFileProvider"
             android:authorities="${applicationId}.TTFileProvider"
@@ -60,39 +55,33 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <provider
             android:name="com.bytedance.sdk.openadsdk.multipro.TTMultiProvider"
             android:authorities="${applicationId}.TTMultiProvider"
-            android:exported="false" />
-        <!-- 穿山甲end -->
-
+            android:exported="false" /> <!-- 穿山甲end -->
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".ui.activity.LoginActivity"
             android:label="登录"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".ui.activity.HelpFeedbackActivity"
             android:label="反馈建议"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".ui.activity.SettingActivity"
             android:label="设置"
@@ -146,6 +135,7 @@
             android:name=".ui.activity.DetailActivity"
             android:label="诗词详情"
             android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activity.MineActivity"
@@ -157,16 +147,27 @@
             android:label="修改信息"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <!--<activity
+        <activity
+            android:name=".ui.activity.LoginPhoneActivity"
+            android:label="手机号登录"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activity.AdvertActivity"
+            android:label="广告页"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--
+<activity
             android:name="com.juguo.gushici.wxapi.WXEntryActivity1"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-
-        <!--com.juguo.gushici.wxapi.WXEntryActivity-->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        -->
+        <!-- com.juguo.gushici.wxapi.WXEntryActivity -->
         <activity
-            android:name="com.juguo.gushici.wxapi.WXEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:launchMode="singleTask"

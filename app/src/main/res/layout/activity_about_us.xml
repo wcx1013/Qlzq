@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="13dp"
-            android:text="爱学古诗词"
+            android:text="古诗词小学必考大全"
             android:textColor="@color/text_23"
             android:textSize="15dp" />
     </LinearLayout>
@@ -36,7 +36,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="40dp"
         android:gravity="center_horizontal"
-        android:text="深圳聚果科技有限公司 版权所有"
+        android:text="深圳微视天利科技有限公司 版权所有"
         android:textColor="@color/text_9B"
         android:textSize="12dp" />
 

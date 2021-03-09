@@ -11,6 +11,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.juguo.gushici.bean.AppConfigBean;
 import com.juguo.gushici.dragger.component.AppComponent;
 import com.juguo.gushici.dragger.component.DaggerAppComponent;
 import com.juguo.gushici.dragger.module.AppModule;
@@ -34,7 +35,7 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     private static MyApplication app;
 
-
+    public static List<AppConfigBean.AdConfig> adConfigList;
     @Override
     public void onCreate() {
         super.onCreate();

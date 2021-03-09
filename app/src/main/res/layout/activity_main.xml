@@ -12,17 +12,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_home"
             android:orientation="vertical">
 
             <!--TopMenu-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
+                android:background="@mipmap/bg_home"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp">
 
                 <LinearLayout
                     android:id="@+id/ll_home_mine"
@@ -124,42 +124,276 @@
             </LinearLayout>
 
             <!--爱学Class1-Class6-->
-            <ImageView
-                android:id="@+id/iv_home_class1"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:background="@mipmap/bg_home_class_1" />
+                android:layout_marginTop="-1dp">
 
-            <ImageView
-                android:id="@+id/iv_home_class2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bg_home_class_2" />
+                <ImageView
+                    android:id="@+id/iv_home_class1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_1" />
 
-            <ImageView
-                android:id="@+id/iv_home_class3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bg_home_class_3" />
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="45dp"
+                    android:background="@mipmap/ic_class_type_right_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
 
-            <ImageView
-                android:id="@+id/iv_home_class4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bg_home_class_4" />
+                    <RadioButton
+                        android:id="@+id/rb_class1_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/iv_home_class5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bg_home_class_5" />
+                    <RadioButton
+                        android:id="@+id/rb_class1_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
 
-            <ImageView
-                android:id="@+id/iv_home_class6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/bg_home_class_6" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_home_class2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_2" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="217dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@mipmap/ic_class_type_right_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rb_class2_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_class2_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_home_class3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_3" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@mipmap/ic_class_type_left_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rb_class3_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_class3_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_home_class4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_4" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@mipmap/ic_class_type_right_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rb_class4_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_class4_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_home_class5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_5" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@mipmap/ic_class_type_left_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rb_class5_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_class5_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_home_class6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@mipmap/bg_home_class_6" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="215dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@mipmap/ic_class_type_right_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp"
+                    android:visibility="gone">
+
+                    <RadioButton
+                        android:id="@+id/rb_class6_kenei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课内"
+                        android:textColor="@color/color_C52509"
+                        android:textSize="15sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_class6_kewai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:button="@null"
+                        android:text="课外"
+                        android:textColor="@color/text_14"
+                        android:textSize="15sp" />
+                </RadioGroup>
+            </FrameLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

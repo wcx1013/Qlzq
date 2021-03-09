@@ -15,15 +15,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.juguo.gushici.MyApplication;
 import com.juguo.gushici.R;
 import com.juguo.gushici.base.BaseMvpActivity;
+import com.juguo.gushici.bean.AppConfigBean;
+import com.juguo.gushici.bean.VersionUpdataBean;
 import com.juguo.gushici.dragger.bean.User;
 import com.juguo.gushici.dragger.bean.UserInfo;
 import com.juguo.gushici.response.AccountInformationResponse;
 import com.juguo.gushici.response.LoginResponse;
+import com.juguo.gushici.response.VersionUpdataResponse;
 import com.juguo.gushici.ui.activity.ClassChooseActivity;
+import com.juguo.gushici.ui.activity.ClassChooseListActivity;
 import com.juguo.gushici.ui.activity.LearnPlanActivity;
 import com.juguo.gushici.ui.activity.LearnReportActivity;
 import com.juguo.gushici.ui.activity.LoginActivity;
@@ -39,6 +46,9 @@ import com.juguo.gushici.utils.MySharedPreferences;
 import com.juguo.gushici.utils.ToastUtils;
 import com.juguo.gushici.utils.Util;
 import com.juguo.gushici.view.XCRoundImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
@@ -63,6 +73,14 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
     private ImageView mIvHomeClass4;
     private ImageView mIvHomeClass5;
     private ImageView mIvHomeClass6;
+
+    private RadioGroup mRadioGroup1;
+    private RadioGroup mRadioGroup2;
+    private RadioGroup mRadioGroup3;
+    private RadioGroup mRadioGroup4;
+    private RadioGroup mRadioGroup5;
+    private RadioGroup mRadioGroup6;
+
 
     private MySharedPreferences mMySharedPreferences;
 
@@ -95,6 +113,13 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
         mIvHomeClass5 = findViewById(R.id.iv_home_class5);
         mIvHomeClass6 = findViewById(R.id.iv_home_class6);
 
+        mRadioGroup1 = findViewById(R.id.radioGroup1);
+        mRadioGroup2 = findViewById(R.id.radioGroup2);
+        mRadioGroup3 = findViewById(R.id.radioGroup3);
+        mRadioGroup4 = findViewById(R.id.radioGroup4);
+        mRadioGroup5 = findViewById(R.id.radioGroup5);
+        mRadioGroup6 = findViewById(R.id.radioGroup6);
+
         mLlHomeMine.setOnClickListener(this);
         mLlHomeLearnReport.setOnClickListener(this);
         mLlHomeLearnPlan.setOnClickListener(this);
@@ -122,8 +147,116 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
 
         showPrivacyDialog();
         mPresenter.login(loginType());
+        getGetAppVersion();
+
+        mRadioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class1_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class1_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroup2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class2_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class2_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroup3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class3_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class3_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroup4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class4_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class4_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroup5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class5_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class5_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroup6.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_class6_kenei) {
+
+                    mIfClass = 1;
+                    nextToClassChooseActivity();
+                } else if (checkedId == R.id.rb_class6_kewai) {
+
+                    mIfClass = 0;
+                    nextToClassChooseActivity();
+                }
+            }
+        });
+        mRadioGroupList.add(mRadioGroup1);
+        mRadioGroupList.add(mRadioGroup2);
+        mRadioGroupList.add(mRadioGroup3);
+        mRadioGroupList.add(mRadioGroup4);
+        mRadioGroupList.add(mRadioGroup5);
+        mRadioGroupList.add(mRadioGroup6);
     }
 
+    /**
+     * 获取app的版本信息
+     */
+    private void getGetAppVersion() {
+        if (!CommUtils.isNetworkAvailable(this)) {
+            ToastUtils.shortShowStr(this, Constants.NET_ERROR);
+            return;
+        }
+        VersionUpdataBean versionUpdataBean = new VersionUpdataBean();
+        versionUpdataBean.setParam(new VersionUpdataBean.VersionUpdataInfo(Constants.WX_APP_ID, CommUtils.getVersionName(this)));
+        mPresenter.settingVersion(versionUpdataBean);
+    }
+
+    private String mClassTitle = "一年级";
+    private int mClassGrade = 1;
+    private int mIfClass = 1;
 
     @Override
     public void onClick(View v) {
@@ -155,44 +288,59 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
                 startActivity(intent);
                 break;
             case R.id.iv_home_class1:
-                String title = "一年级";
-                int grade = 1;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "一年级";
+                mClassGrade = 1;
+                showRadioGroup(mClassGrade - 1);
                 break;
             case R.id.iv_home_class2:
-                title = "二年级";
-                grade = 2;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "二年级";
+                mClassGrade = 2;
+                showRadioGroup(mClassGrade - 1);
                 break;
             case R.id.iv_home_class3:
-                title = "三年级";
-                grade = 3;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "三年级";
+                mClassGrade = 3;
+                showRadioGroup(mClassGrade - 1);
                 break;
             case R.id.iv_home_class4:
-                title = "四年级";
-                grade = 4;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "四年级";
+                mClassGrade = 4;
+                showRadioGroup(mClassGrade - 1);
                 break;
             case R.id.iv_home_class5:
-                title = "五年级";
-                grade = 5;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "五年级";
+                mClassGrade = 5;
+                showRadioGroup(mClassGrade - 1);
                 break;
             case R.id.iv_home_class6:
-                title = "六年级";
-                grade = 6;
-                nextToClassChooseActivity(title, grade);
+                mClassTitle = "六年级";
+                mClassGrade = 6;
+                showRadioGroup(mClassGrade - 1);
                 break;
 
         }
     }
 
-    private void nextToClassChooseActivity(String title, int grade) {
+    List<View> mRadioGroupList = new ArrayList<>();
 
-        Intent intent = new Intent(this, ClassChooseActivity.class);
-        intent.putExtra(ClassChooseActivity.TITLE, title);
-        intent.putExtra(ClassChooseActivity.GRADE, grade);
+    private void showRadioGroup(int index) {
+
+        for (int i = 0; i < mRadioGroupList.size(); i++) {
+
+            if (i == index) {
+                mRadioGroupList.get(i).setVisibility(View.VISIBLE);
+            } else {
+                mRadioGroupList.get(i).setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void nextToClassChooseActivity() {
+
+        Intent intent = new Intent(this, ClassChooseListActivity.class);
+        intent.putExtra(ClassChooseActivity.TITLE, mClassTitle);
+        intent.putExtra(ClassChooseActivity.GRADE, mClassGrade);
+        intent.putExtra(ClassChooseActivity.IFCLASS, mIfClass);
         startActivity(intent);
     }
 
@@ -221,7 +369,7 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
                 // 设置用户名和用户icon
                 Util.displayCircleCropImgView(this, mImgUser, userIcon, R.mipmap.ic_user_place);
             }
-        }else {
+        } else {
             mImgUser.setImageDrawable(getResources().getDrawable(R.mipmap.ic_user_place));
         }
     }
@@ -241,6 +389,34 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
     @Override
     public void httpError(String e) {
 
+    }
+
+    @Override
+    public void httpCallback(VersionUpdataResponse response) {
+        dialogDismiss();
+        if (response.isSuccess()) {
+            VersionUpdataResponse.VersionUpdataInfo result = response.getResult();
+            if (result != null) {
+                String appConfig = result.getAppConfig();
+                if (!TextUtils.isEmpty(appConfig)) {
+                    AppConfigBean appConfigBean = JSON.parseObject(appConfig, AppConfigBean.class);
+                    String ifPay = appConfigBean.getIfPay();
+                    mMySharedPreferences.putValue("isOpenMember", ifPay);
+                    MyApplication.adConfigList = appConfigBean.getAdConfig();
+                }
+                List<VersionUpdataResponse.RecAccountList> recAccountList = result.getRecAccountList();
+                if (recAccountList != null && recAccountList.size() > 0) {
+                    for (int i = 0; i < recAccountList.size(); i++) {
+                        String payerType = recAccountList.get(i).getPayerType();
+                        if ("ALI".equalsIgnoreCase(payerType)) {
+                            mMySharedPreferences.putValue("ali", recAccountList.get(i).getId());
+                        } else if ("WX".equalsIgnoreCase(payerType)) {
+                            mMySharedPreferences.putValue("wx", recAccountList.get(i).getId());
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -263,7 +439,13 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
                 userInfo.setUnionInfo(uuid);
                 mMySharedPreferences.clear();
             } else {
-                if (Wechat.NAME.equals(loginType)) {
+                if ("0".equals(loginType)) {
+                    String password = (String) mMySharedPreferences.getValue("password", "");
+                    String account = (String) mMySharedPreferences.getValue("account", "");
+                    userInfo.setType(0);
+                    userInfo.setPassword(password);
+                    userInfo.setAccount(account);
+                } else if (Wechat.NAME.equals(loginType)) {
                     userInfo.setType(3);
                     userInfo.setUnionInfo(userId);
                 } else if (QQ.NAME.equals(loginType)) {
@@ -304,15 +486,15 @@ public class MainActivity extends BaseMvpActivity<HomePresenter> implements Home
 
 
         //设置文字
-//        String userLicenseAgreement = "《爱学古诗词App用户使用协议》";
+//        String userLicenseAgreement = "《古诗词小学必考大全App用户使用协议》";
         String userLicenseAgreement = "《" + getString(R.string.app_name) + "App用户使用协议》";
         String privacyAgreement = "《" + getString(R.string.app_name) + "App用户隐私协议》";
 
-//        String userLicenseAgreement = "《爱学古诗词App用户使用协议》";
-//        String privacyAgreement = "《爱学古诗词App用户隐私协议》";
+//        String userLicenseAgreement = "《古诗词小学必考大全App用户使用协议》";
+//        String privacyAgreement = "《古诗词小学必考大全App用户隐私协议》";
 
-        String message = "感谢您信任并使用爱学古诗词的产品和服务。在您使用爱学古诗词App前，请认真阅读并了解我们的";
-        String messageAll = "感谢您信任并使用爱学古诗词的产品和服务。在您使用爱学古诗词App前，请认真阅读并了解我们的" + userLicenseAgreement + "和" + privacyAgreement;
+        String message = "感谢您信任并使用古诗词小学必考大全的产品和服务。在您使用古诗词小学必考大全App前，请认真阅读并了解我们的";
+        String messageAll = "感谢您信任并使用古诗词小学必考大全的产品和服务。在您使用古诗词小学必考大全App前，请认真阅读并了解我们的" + userLicenseAgreement + "和" + privacyAgreement;
 
         int start_User = message.length();
         int end_User = start_User + userLicenseAgreement.length() - 1;

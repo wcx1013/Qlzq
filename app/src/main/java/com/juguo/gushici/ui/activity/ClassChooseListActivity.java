@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.juguo.gushici.R;
 import com.juguo.gushici.adapter.ClassChooseListAdapter;
@@ -32,6 +34,8 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
     private int mGrade = 1;
     private int mIfClass = 1;//是否是课内。1课内0课外
     private boolean mIsResume;
+
+    private PoetryBean poetryBean;
 
     @Override
     protected int getLayout() {
@@ -84,6 +88,9 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         mRvList.setLayoutManager(linearLayoutManager);
+
+        View emptyView = getLayoutInflater().inflate(R.layout.view_empty_text, null);
+        mClassChooseListAdapter.setEmptyView(emptyView);
         mRvList.setAdapter(mClassChooseListAdapter);
 
         mClassChooseListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -91,7 +98,8 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
             public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
 
                 Intent intent = new Intent(ClassChooseListActivity.this, DetailActivity.class);
-                intent.putExtra(DetailActivity.POETRY_DATA, mClassChooseListAdapter.getData().get(i).getPoetryBean());
+                intent.putExtra(DetailActivity.POETRY_DATA,poetryBean);
+                intent.putExtra(DetailActivity.POETRY_INDEX, i);
                 startActivity(intent);
             }
         });
@@ -125,6 +133,7 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
 
         if (!ListUtils.isEmpty(poetryBean.getList())) {
 
+            this.poetryBean=poetryBean;
             List<AddPlanTwoBean> twoBeanList = new ArrayList<>();
             for (int i = 0; i < poetryBean.getList().size(); i++) {
                 AddPlanTwoBean addPlanTwoBean = new AddPlanTwoBean();
@@ -160,10 +169,10 @@ public class ClassChooseListActivity extends BaseMvpActivity<AddPlanPresenter> i
     public void changeStateSuccess(BaseResponse o) {
 
         dialogDismiss();
-        if(o.isSuccess()){
+        if (o.isSuccess()) {
             ToastUtils.shortShowStr(this, "修改背诵状态成功");
             //requestAddPlan(mClassChooseListAdapter.getData().get(index).getPoetryBean().getId());
-        }else {
+        } else {
             ToastUtils.shortShowStr(this, "修改背诵状态失败");
         }
     }

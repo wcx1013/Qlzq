@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.juguo.gushici.dragger.bean.User;
 import com.juguo.gushici.dragger.bean.UserInfo;
 import com.juguo.gushici.response.AccountInformationResponse;
 import com.juguo.gushici.response.LoginResponse;
+import com.juguo.gushici.ui.MainActivity;
 import com.juguo.gushici.ui.activity.contract.LoginContract;
 import com.juguo.gushici.ui.activity.presenter.LoginPresenter;
 import com.juguo.gushici.utils.Constants;
@@ -75,6 +77,14 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
     });
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 10) {
+            finish();
+        }
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_login;
     }
@@ -104,7 +114,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
         });
     }
 
-    @OnClick({R.id.wx_login, R.id.qq_login, R.id.ll_ty, R.id.tv_yhxy, R.id.tv_yszy})
+    @OnClick({R.id.wx_login, R.id.qq_login, R.id.ll_ty, R.id.tv_yhxy, R.id.tv_yszy, R.id.ll_phone_login})
     public void btn_Login_Click(View v) {
         switch (v.getId()) {
             case R.id.wx_login:
@@ -132,6 +142,14 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
                 } else {
                     ToastUtils.shortShowStr(mContext, "请先安装QQ客户端");
                 }
+                break;
+            case R.id.ll_phone_login:
+
+                if (!img_select.isSelected()) {
+                    ToastUtils.shortShowStr(mContext, "请选择同意");
+                    return;
+                }
+                startActivityForResult(new Intent(this, LoginPhoneActivity.class),0);
                 break;
             case R.id.ll_ty:
                 // 是否同意
@@ -166,7 +184,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
             public void onComplete(Platform platform, int action, HashMap<String, Object> hashMap) {
                 if (action == Platform.ACTION_USER_INFOR) {
 
-                    Log.d("tag","11111111");
+                    Log.d("tag", "11111111");
                     PlatformDb platDB = platform.getDb();//获取数平台数据DB
                     //通过DB获取各种数据
                     String token = platDB.getToken();
@@ -199,12 +217,12 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements Lo
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                Log.d("tag","");
+                Log.d("tag", "");
             }
 
             @Override
             public void onCancel(Platform platform, int i) {
-                Log.d("tag","");
+                Log.d("tag", "");
             }
         });
         platform.showUser(null);

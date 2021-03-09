@@ -2,5 +2,4 @@
 <resources>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_20">20dp</dimen>
-    <dimen name="dp_120">120dp</dimen>
 </resources>

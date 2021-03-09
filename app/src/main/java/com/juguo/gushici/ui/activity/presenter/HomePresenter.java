@@ -5,12 +5,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 import com.juguo.gushici.base.BaseMvpPresenter;
+import com.juguo.gushici.bean.VersionUpdataBean;
 import com.juguo.gushici.dragger.bean.User;
 import com.juguo.gushici.http.DefaultObserver;
 import com.juguo.gushici.http.RetrofitUtils;
 import com.juguo.gushici.http.RxSchedulers;
 import com.juguo.gushici.response.AccountInformationResponse;
 import com.juguo.gushici.response.LoginResponse;
+import com.juguo.gushici.response.VersionUpdataResponse;
 import com.juguo.gushici.service.ApiService;
 import com.juguo.gushici.ui.activity.contract.HomeContract;
 import com.juguo.gushici.ui.activity.contract.LoginContract;
@@ -55,6 +57,24 @@ public class HomePresenter extends BaseMvpPresenter<HomeContract.View> implement
                 .subscribe(new DefaultObserver<AccountInformationResponse>((Fragment) mView) {
                     @Override
                     public void onSuccess(AccountInformationResponse result) {
+                        mView.httpCallback(result);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, String errorMsg) {
+                        mView.httpError(e.toString());
+                    }
+                });
+    }
+    @Override
+    public void settingVersion(VersionUpdataBean versionUpdataBean) {
+        RetrofitUtils.getInstance().create(ApiService.class)
+                .versionUpdata(versionUpdataBean)
+                .compose(RxSchedulers.io_main())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from((LifecycleOwner) mView)))
+                .subscribe(new DefaultObserver<VersionUpdataResponse>((Context) mView) {
+                    @Override
+                    public void onSuccess(VersionUpdataResponse result) {
                         mView.httpCallback(result);
                     }
 
